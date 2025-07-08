@@ -1,0 +1,29 @@
+{{ $github_username := .Site.Params.contact.github_username }}
+{{ $github_repo := .Site.Params.contact.github_repo }}
+{{ $primary_email := .Site.Params.contact.primary_email }}
+{{ $business_hours := .Site.Params.contact.business_hours }}
+{{ $response_time := .Site.Params.contact.response_time }}
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="https://github.com/{{ $github_username }}/{{ $github_repo }}/issues/new?template=contact.md&title=Contact%20Request:%20[Your%20Subject]&body=**Name:**%20%0A%0A**Email:**%20%0A%0A**Subject:**%20%0A%0A**Message:**%20%0A%0A**How%20did%20you%20find%20us?**%20%0A%0A----%0A%0A*This%20contact%20form%20is%20powered%20by%20GitHub%20Issues*" 
+       style="background-color: #333; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+        📧 Send Message via GitHub
+    </a>
+</div>
+
+<p><em>Note: You'll need a GitHub account to submit a contact request. This helps us maintain better communication and follow-up on your inquiries.</em></p>
+
+<hr style="margin: 30px 0;">
+
+<h5>Alternative Contact Methods</h5>
+
+<p>If you prefer other communication methods, feel free to reach out directly:</p>
+
+<ul>
+<li><strong>Email</strong>: {{ $primary_email }}</li>
+<li><strong>Response Time</strong>: {{ $response_time }}</li>
+<li><strong>Business Hours</strong>: {{ $business_hours }}</li>
+{{ if .Site.Params.contact.phone }}
+<li><strong>Phone</strong>: {{ .Site.Params.contact.phone }}</li>
+{{ end }}
+</ul>

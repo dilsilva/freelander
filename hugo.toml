@@ -1,0 +1,97 @@
+baseURL = 'https://example.org/'
+
+disableKinds = ["section", "taxonomy", "term", "RSS", "robotsTXT"]
+
+defaultContentLanguage = "en"
+
+theme = "hugo-scroll"
+
+title = "FreeLanding"
+
+enableEmoji = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+    favicon = "images/favicon.png"
+    images = ["images/cover-image.jpg"]
+    title_guard = false
+    title = "FreeLanding"
+    description = "Your landing page with about us, gallery, and contact"
+    language_menu = false
+    show_current_lang = true
+    copyright = "© FreeLanding"
+    hidedesignbyline = false
+    invertSectionColors = false
+    image_options = "webp q90 lanczos photo"
+    combine_page_and_site_title = false
+
+    [params.footer]
+        showContactIcons = true
+        showFooterLinks = false
+
+    [params.meta]
+        keywords = "landing, page, about, gallery, contact"
+
+    # Contact Form Configuration
+    [params.contact]
+        github_username = "dilsilva"
+        github_repo = "freelander"
+        primary_email = "dilsilva.trash@gmail.com"
+        business_hours = "Monday - Friday, 9:00 AM - 6:00 PM"
+        response_time = "Within 24 hours"
+        phone = ""  # Optional: Add phone number if needed
+        
+    # Site Customization
+    [params.site]
+        company_name = "FreeLanding"
+        tagline = "Your Professional Landing Page"
+        about_title = "About Us"
+        gallery_title = "Gallery"
+        contact_title = "Contact"
+        
+    # Color Theme Configuration
+    [params.colors]
+        # Primary brand colors - Using deep teal blues for professional look
+        primary = "#183e4b"           # Deep teal (headers, nav)
+        primary_light = "#1b4552"     # Slightly lighter teal for hover states
+        primary_dark = "#0f2a33"      # Darker teal for depth (generated)
+        
+        # Secondary colors - Using muted blue-gray for interactive elements
+        secondary = "#8ba0a4"         # Muted blue-gray (buttons, links)
+        secondary_light = "#a3b5b8"   # Lighter blue-gray for hover (generated)
+        secondary_dark = "#6d8387"    # Darker blue-gray for active states (generated)
+        
+        # Accent colors - Using coral red for emphasis
+        accent = "#d74a49"            # Coral red for emphasis/CTAs
+        accent_light = "#e26968"      # Lighter coral for hover (generated)
+        
+        # Neutral colors - Using light gray palette
+        background = "#FFFFFF"        # Clean white background
+        background_alt = "#eaeaea"    # Light gray alternate background
+        text = "#183e4b"              # Deep teal for main text (good contrast)
+        text_light = "#1b4552"        # Slightly lighter teal for secondary text
+        text_muted = "#8ba0a4"        # Muted blue-gray for less important text
+        
+        # UI elements
+        border = "#d0d0d0"            # Slightly darker gray for borders (generated)
+        shadow = "rgba(24,62,75,0.1)" # Teal-tinted shadow for brand consistency
+        
+        # Section backgrounds (alternating)
+        section_odd = "#FFFFFF"       # White sections
+        section_even = "#eaeaea"      # Light gray sections
+        
+    [[params.contacts]]
+        label = "email"
+        value = "dilsilva.trash@gmail.com"
+        url = "mailto:dilsilva.trash@gmail.com"
+        icon = "fa fa-envelope"
+
+[languages]
+  [languages.en]
+    weight = 10
+    languageName = "English"
+    contentDir = "content/en"

@@ -1,0 +1,163 @@
+<!-- Custom CSS with configurable colors -->
+<style>
+:root {
+    /* Primary brand colors */
+    --color-primary: {{ .Site.Params.colors.primary | default "#2C3E50" }};
+    --color-primary-light: {{ .Site.Params.colors.primary_light | default "#34495E" }};
+    --color-primary-dark: {{ .Site.Params.colors.primary_dark | default "#1A252F" }};
+    
+    /* Secondary colors */
+    --color-secondary: {{ .Site.Params.colors.secondary | default "#3498DB" }};
+    --color-secondary-light: {{ .Site.Params.colors.secondary_light | default "#5DADE2" }};
+    --color-secondary-dark: {{ .Site.Params.colors.secondary_dark | default "#2980B9" }};
+    
+    /* Accent colors */
+    --color-accent: {{ .Site.Params.colors.accent | default "#E74C3C" }};
+    --color-accent-light: {{ .Site.Params.colors.accent_light | default "#EC7063" }};
+    
+    /* Neutral colors */
+    --color-background: {{ .Site.Params.colors.background | default "#FFFFFF" }};
+    --color-background-alt: {{ .Site.Params.colors.background_alt | default "#F8F9FA" }};
+    --color-text: {{ .Site.Params.colors.text | default "#2C3E50" }};
+    --color-text-light: {{ .Site.Params.colors.text_light | default "#7F8C8D" }};
+    --color-text-muted: {{ .Site.Params.colors.text_muted | default "#BDC3C7" }};
+    
+    /* UI elements */
+    --color-border: {{ .Site.Params.colors.border | default "#E5E5E5" }};
+    --color-shadow: {{ .Site.Params.colors.shadow | default "rgba(0,0,0,0.1)" }};
+    
+    /* Section backgrounds */
+    --color-section-odd: {{ .Site.Params.colors.section_odd | default "#FFFFFF" }};
+    --color-section-even: {{ .Site.Params.colors.section_even | default "#F8F9FA" }};
+}
+
+/* Apply custom colors to theme elements */
+
+/* Header and navigation */
+#site-head {
+    background-color: var(--color-primary);
+}
+
+.blog-title {
+    color: var(--color-background) !important;
+}
+
+.blog-description {
+    color: var(--color-background-alt) !important;
+}
+
+/* Navigation buttons */
+.btn.site-menu {
+    background-color: var(--color-secondary) !important;
+    color: var(--color-background) !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+.btn.site-menu:hover {
+    background-color: var(--color-secondary-light) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-shadow);
+}
+
+/* Section backgrounds (alternating) */
+.post:nth-child(odd) {
+    background-color: var(--color-section-odd);
+}
+
+.post:nth-child(even) {
+    background-color: var(--color-section-even);
+}
+
+/* Text colors */
+.post-content {
+    color: var(--color-text);
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    color: var(--color-primary);
+}
+
+/* Links */
+.post-content a {
+    color: var(--color-secondary);
+    transition: color 0.3s ease;
+}
+
+.post-content a:hover {
+    color: var(--color-secondary-dark);
+}
+
+/* Contact form button styling */
+.post-content a[href*="github.com"] {
+    background-color: var(--color-accent) !important;
+    color: var(--color-background) !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.post-content a[href*="github.com"]:hover {
+    background-color: var(--color-accent-light) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-shadow);
+}
+
+/* Borders and dividers */
+hr {
+    border-color: var(--color-border);
+}
+
+/* Gallery grid styling */
+.post-content div[style*="grid"] > div {
+    background: var(--color-background-alt) !important;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+}
+
+.post-content div[style*="grid"] > div:hover {
+    box-shadow: 0 4px 12px var(--color-shadow);
+    transform: translateY(-2px);
+}
+
+/* Contact list styling */
+.contact-list {
+    color: var(--color-text-light);
+}
+
+.contact-list a {
+    color: var(--color-secondary);
+}
+
+.contact-list a:hover {
+    color: var(--color-secondary-dark);
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--color-primary-dark);
+    color: var(--color-background-alt);
+}
+
+/* Custom animations and effects */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.post {
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+    .btn.site-menu {
+        margin: 5px;
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+</style>
