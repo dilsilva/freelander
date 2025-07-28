@@ -1,0 +1,112 @@
+Watching for changes in /Users/diegosilva/Documents/playground/claude-labs/{archetypes,assets,content,data,i18n,layouts,package.json,static,themes}
+Watching for config changes in /Users/diegosilva/Documents/playground/claude-labs/hugo.toml
+Start building sites … 
+hugo v0.147.9+extended+withdeploy darwin/arm64 BuildDate=2025-06-23T08:22:20Z VendorInfo=brew
+
+
+                  │ EN  
+──────────────────┼─────
+ Pages            │  44 
+ Paginator pages  │   0 
+ Non-page files   │   0 
+ Static files     │ 127 
+ Processed images │   0 
+ Aliases          │   1 
+ Cleaned          │   0 
+
+Built in 172 ms
+Environment: "development"
+Serving pages from disk
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0) 
+Press Ctrl+C to stop
+
+Change of Static files detected, rebuilding site (#1).
+2025-07-28 12:11:26.476 +0200
+Syncing /css/custom.css to /
+
+Change of Static files detected, rebuilding site (#2).
+2025-07-28 12:11:59.477 +0200
+Syncing /css/custom.css to /
+
+Change detected, rebuilding site (#3).
+2025-07-28 12:16:10.978 +0200
+Template changed /partials/header.html
+Template added /partials/header.html.tmp.78375.1753697770708
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Total in 13 ms
+
+Change of Static files detected, rebuilding site (#4).
+2025-07-28 12:16:22.477 +0200
+Syncing /css/custom.css to /
+
+Change of Static files detected, rebuilding site (#5).
+2025-07-28 12:17:13.976 +0200
+Syncing /css/custom.css to /
+
+Change of Static files detected, rebuilding site (#6).
+2025-07-28 12:17:48.475 +0200
+Syncing /css/custom.css to /
+
+Change detected, rebuilding site (#7).
+2025-07-28 12:17:56.975 +0200
+Template changed /partials/about.html
+Template added /partials/about.html.tmp.78375.1753697876757
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Total in 8 ms
+
+Change detected, rebuilding site (#8).
+2025-07-28 12:22:28.976 +0200
+Template changed /partials/portfolio.html
+Template added /partials/portfolio.html.tmp.78375.1753698148935
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Total in 9 ms
+
+Change detected, rebuilding site (#9).
+2025-07-28 12:22:33.476 +0200
+Template changed /partials/portfolio.html
+Template added /partials/portfolio.html.tmp.78375.1753698153332
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Total in 5 ms
+
+Change detected, rebuilding site (#10).
+2025-07-28 12:22:47.476 +0200
+Template changed /partials/contact.html
+Template added /partials/contact.html.tmp.78375.1753698167061
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Total in 10 ms
+adding created directory to watchlist /Users/diegosilva/Documents/playground/claude-labs/static/img/about
+adding created directory to watchlist /Users/diegosilva/Documents/playground/claude-labs/static/img/profile
+adding created directory to watchlist /Users/diegosilva/Documents/playground/claude-labs/static/img/portfolio/project-one
+adding created directory to watchlist /Users/diegosilva/Documents/playground/claude-labs/static/img/portfolio/project-two
+
+Change of Static files detected, rebuilding site (#11).
+2025-07-28 12:23:01.477 +0200
+Syncing /img/about to /
+Syncing /img/profile to /
+Syncing /img/portfolio/project-one to /
+Syncing /img/portfolio/project-two to /
+
+Change of Static files detected, rebuilding site (#12).
+2025-07-28 12:23:09.976 +0200
+Syncing /img/profile/profile.jpg to /
+
+Change of Static files detected, rebuilding site (#13).
+2025-07-28 12:23:17.476 +0200
+Syncing /img/profile/profile@2x.jpg to /
+
+Change of Static files detected, rebuilding site (#14).
+2025-07-28 12:23:24.476 +0200
+Syncing /img/about/about-photo.jpg to /
+
+Change of Static files detected, rebuilding site (#15).
+2025-07-28 12:23:31.976 +0200
+Syncing /img/about/about-photo@2x.jpg to /
+
+Change of Static files detected, rebuilding site (#16).
+2025-07-28 12:23:40.482 +0200
+Syncing /img/portfolio/project-one/hero.jpg to /
+
+Change of Static files detected, rebuilding site (#17).
+2025-07-28 12:23:49.483 +0200
+Syncing /img/portfolio/project-two/hero.jpg to /

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Test</title>
+    <link rel="stylesheet" href="http://localhost:1313/css/rad-icons.css">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .icon-test { 
+            font-size: 24px; 
+            margin: 10px; 
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .test-label { 
+            display: block; 
+            font-size: 12px; 
+            margin-top: 5px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Icon Font Test</h1>
+    
+    <div class="icon-test">
+        <i class="icon-mail-fill"></i>
+        <span class="test-label">icon-mail-fill</span>
+    </div>
+    
+    <div class="icon-test">
+        <i class="icon-linkedin-line"></i>
+        <span class="test-label">icon-linkedin-line</span>
+    </div>
+    
+    <div class="icon-test">
+        <i class="icon-arrow-right"></i>
+        <span class="test-label">icon-arrow-right</span>
+    </div>
+    
+    <div class="icon-test">
+        <i class="icon-profile-fill"></i>
+        <span class="test-label">icon-profile-fill</span>
+    </div>
+    
+    <h2>Font Info</h2>
+    <p>Font family should be 'rad-icons'</p>
+    <script>
+        console.log('Testing icon fonts...');
+        const iconElement = document.querySelector('.icon-mail-fill');
+        const styles = window.getComputedStyle(iconElement, ':before');
+        console.log('Font family:', styles.fontFamily);
+        console.log('Content:', styles.content);
+    </script>
+</body>
+</html>

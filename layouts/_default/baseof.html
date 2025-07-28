@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang | default "en" }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    {{/* Custom head partial with SEO and analytics */}}
+    {{ partial "head.html" . }}
+    
+    {{/* Load CSS plugins */}}
+    {{ range site.Params.plugins.css }}
+    <link rel="stylesheet" href="{{ .URL | absURL }}" />
+    {{ end }}
+</head>
+<body class="rad-fade-in">
+    {{/* Analytics body partial for GTM noscript */}}
+    {{ partial "analytics-body.html" . }}
+    
+    {{/* Header */}}
+    {{ partial "header.html" . }}
+    
+    {{/* Main content */}}
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+    
+    {{/* Footer */}}
+    {{ partial "footer.html" . }}
+    
+    {{/* Load JS plugins */}}
+    {{ range site.Params.plugins.js }}
+    <script src="{{ .URL | absURL }}"></script>
+    {{ end }}
+</body>
+</html>

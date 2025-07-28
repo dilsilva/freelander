@@ -1,0 +1,47 @@
+{{ $config := .Site.Data.config }}
+{{ $personal := $config.personal }}
+{{ $social := $config.social }}
+
+<section class="section rad-animation-group pb-0" id="about">
+  <div class="container rad-fade-down">
+    <div class="row d-flex flex-column-reverse flex-md-row">
+      <div class="about__profile-picture col-12 col-md-6">
+        <img
+          class="lozad img-responsive image-left-overflow"
+          src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+          data-src="{{ "img/about/about-photo.jpg" | absURL }}"
+          data-srcset="{{ "img/about/about-photo.jpg" | absURL }} 1x, {{ "img/about/about-photo@2x.jpg" | absURL }} 2x"
+          alt="About {{ $personal.name }}"
+        />
+      </div>
+      <div class="col-12 col-md-6 my-auto">
+        <h2>About {{ $personal.name }}</h2>
+        <div class="lead">
+          {{ $personal.bio_long | markdownify }}
+        </div>
+        
+        <!-- Action buttons -->
+        <div class="about-actions mt-4">
+          <a
+            href="#portfolio"
+            class="btn btn-primary mr-3"
+          >
+            <i class="icon-arrow-right"></i>
+            View My Work
+          </a>
+          
+          {{ if $social.resume_pdf }}
+          <a
+            href="{{ $social.resume_pdf }}"
+            target="_blank"
+            class="btn btn-outline-primary"
+          >
+            <i class="icon-profile-fill"></i>
+            Download Resume
+          </a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

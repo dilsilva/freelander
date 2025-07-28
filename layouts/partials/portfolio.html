@@ -1,0 +1,129 @@
+{{ $config := .Site.Data.config }}
+{{ $portfolio := $config.portfolio }}
+
+<section id="portfolio" class="section section--border-bottom">
+  <div class="container">
+    <!-- Portfolio Header -->
+    <div class="rad-animation-group rad-fade-down text-center mb-5">
+      <h2>{{ $portfolio.title | default "Featured Work" }}</h2>
+      {{ with $portfolio.subtitle }}
+      <p class="lead">{{ . }}</p>
+      {{ end }}
+    </div>
+
+
+    <!-- Portfolio Grid -->
+    <div class="portfolio-grid">
+      {{ range $index, $project := $portfolio.projects }}
+      {{ if $project.featured }}
+      <div class="row row--padded rad-animation-group rad-fade-down portfolio-item">
+        {{ $isEven := eq (mod $index 2) 0 }}
+        {{ if $isEven }}
+        <!-- Content Left, Image Right -->
+        <div class="col-12 col-md-5 my-auto order-2 order-md-1">
+          <div class="portfolio-content">
+            <span class="badge bg-secondary mb-2">{{ $project.year }}</span>
+            <h3>{{ $project.name }}</h3>
+            
+            {{ if $project.client }}
+            <p class="text-muted mb-2"><strong>Client:</strong> {{ $project.client }}</p>
+            {{ end }}
+            
+            <p class="lead">{{ $project.description }}</p>
+            
+            {{ if $project.tags }}
+            <div class="portfolio-tags mb-3">
+              {{ range $project.tags }}
+              <span class="badge bg-light text-dark mr-1">{{ . }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
+            
+            <!-- Action Buttons -->
+            <div class="portfolio-actions">
+              {{ if $project.live_url }}
+              <a href="{{ $project.live_url }}" class="btn btn-primary mr-2" target="_blank">
+                View Live Site
+                <i class="icon-arrow-right"></i>
+              </a>
+              {{ end }}
+              
+              {{ if $project.gallery_images }}
+              <button class="btn btn-outline-primary" onclick="openGallery('{{ $project.name | urlize }}')">
+                <i class="icon-arrow-right"></i>
+                View Gallery
+              </button>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-12 col-md-7 order-1 order-md-2 mb-4 mb-md-0">
+          <div class="portfolio-image">
+            <img
+              class="lozad img-responsive portfolio-featured-image"
+              src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+              data-src="{{ $project.featured_image | absURL }}"
+              alt="{{ $project.name }}"
+            />
+          </div>
+        </div>
+        
+        {{ else }}
+        <!-- Image Left, Content Right -->
+        <div class="col-12 col-md-7 mb-4 mb-md-0">
+          <div class="portfolio-image">
+            <img
+              class="lozad img-responsive portfolio-featured-image"
+              src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+              data-src="{{ $project.featured_image | absURL }}"
+              alt="{{ $project.name }}"
+            />
+          </div>
+        </div>
+        
+        <div class="col-12 col-md-5 my-auto">
+          <div class="portfolio-content">
+            <span class="badge bg-secondary mb-2">{{ $project.year }}</span>
+            <h3>{{ $project.name }}</h3>
+            
+            {{ if $project.client }}
+            <p class="text-muted mb-2"><strong>Client:</strong> {{ $project.client }}</p>
+            {{ end }}
+            
+            <p class="lead">{{ $project.description }}</p>
+            
+            {{ if $project.tags }}
+            <div class="portfolio-tags mb-3">
+              {{ range $project.tags }}
+              <span class="badge bg-light text-dark mr-1">{{ . }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
+            
+            <!-- Action Buttons -->
+            <div class="portfolio-actions">
+              {{ if $project.live_url }}
+              <a href="{{ $project.live_url }}" class="btn btn-primary mr-2" target="_blank">
+                View Live Site
+                <i class="icon-arrow-right"></i>
+              </a>
+              {{ end }}
+              
+              {{ if $project.gallery_images }}
+              <button class="btn btn-outline-primary" onclick="openGallery('{{ $project.name | urlize }}')">
+                <i class="icon-arrow-right"></i>
+                View Gallery
+              </button>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,56 @@
+{{ define "main" }}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <header class="page-header">
+                <h1>{{ .Title }}</h1>
+                {{ with .Params.description }}
+                <p class="page-description">{{ . }}</p>
+                {{ end }}
+            </header>
+            
+            {{ if .Content }}
+            <div class="page-content">
+                {{ .Content }}
+            </div>
+            {{ end }}
+            
+            {{ if .Pages }}
+            <div class="content-list">
+                <div class="row">
+                    {{ range .Pages }}
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <article class="content-item">
+                            {{ if .Params.featured_image }}
+                            <div class="content-image">
+                                <img src="{{ .Params.featured_image | absURL }}" alt="{{ .Title }}" class="img-fluid">
+                            </div>
+                            {{ end }}
+                            
+                            <div class="content-body">
+                                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                                
+                                {{ if .Date }}
+                                <div class="content-meta">
+                                    <time datetime="{{ .Date.Format "2006-01-02" }}">
+                                        {{ .Date.Format "January 2, 2006" }}
+                                    </time>
+                                </div>
+                                {{ end }}
+                                
+                                {{ if .Summary }}
+                                <p class="content-summary">{{ .Summary }}</p>
+                                {{ end }}
+                                
+                                <a href="{{ .Permalink }}" class="read-more">Read More →</a>
+                            </div>
+                        </article>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

@@ -1,0 +1,24 @@
+User-agent: *
+
+Disallow: /
+
+
+# Allow indexing of important pages
+Allow: /blog/
+Allow: /portfolio/
+Allow: /about/
+Allow: /contact/
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /drafts/
+
+# Crawl delay (optional, helps with server load)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: http://localhost:1313/sitemap.xml
+
+# Additional sitemaps

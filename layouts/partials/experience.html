@@ -1,0 +1,65 @@
+{{ $config := .Site.Data.config }}
+{{ $experience := $config.experience }}
+
+{{ if $experience.jobs }}
+<section id="experience" class="section section--border-bottom">
+    <div class="container">
+        <!-- Experience Header -->
+        <div class="text-center mb-5 rad-animation-group rad-fade-down">
+            <h2>Experience</h2>
+            <p class="lead">My professional journey and background</p>
+        </div>
+
+        <!-- Professional Experience Timeline -->
+        <div class="experience-timeline rad-animation-group rad-fade-down">
+            <div class="row">
+                <div class="col-12">
+                    <div class="timeline">
+                        {{ range $index, $job := $experience.jobs }}
+                        <div class="timeline-item">
+                            <div class="timeline-marker">
+                                <div class="timeline-icon">
+                                    <i class="icon-profile-fill"></i>
+                                </div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>{{ $job.title }}</h4>
+                                    <div class="timeline-meta">
+                                        <span class="company">{{ $job.company }}</span>
+                                        <span class="duration">{{ $job.duration }}</span>
+                                    </div>
+                                </div>
+                                {{ if $job.description }}
+                                <div class="timeline-description">
+                                    {{ $job.description | markdownify }}
+                                </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        {{ if $experience.education }}
+        <div class="education-section mt-5">
+            <h3 class="text-center mb-4">Education</h3>
+            <div class="row">
+                {{ range $experience.education }}
+                <div class="col-md-6 mb-3">
+                    <div class="education-item">
+                        <h5>{{ .degree }}</h5>
+                        <p class="text-muted">{{ .school }} • {{ .year }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+{{ end }}

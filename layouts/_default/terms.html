@@ -1,0 +1,44 @@
+{{ define "main" }}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <header class="terms-header">
+                <h1>{{ .Title }}</h1>
+                <p class="terms-description">
+                    {{ if eq .Type "categories" }}
+                    Browse posts by category
+                    {{ else if eq .Type "tags" }}
+                    Browse posts by tag
+                    {{ else }}
+                    {{ .Title }}
+                    {{ end }}
+                </p>
+            </header>
+            
+            {{ if .Data.Terms }}
+            <div class="terms-list">
+                <div class="row">
+                    {{ range .Data.Terms.ByCount }}
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="term-item">
+                            <h3 class="term-name">
+                                <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+                            </h3>
+                            <p class="term-count">{{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }}</p>
+                            {{ if .Page.Summary }}
+                            <p class="term-description">{{ .Page.Summary }}</p>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            {{ else }}
+            <div class="no-terms">
+                <p>No {{ .Type }} found.</p>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

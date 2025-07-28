@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{ partial "head.html" . }}
+    {{ partial "head_custom.html" . }}
+    
+    <!-- Blog post specific meta -->
+    <meta name="description" content="{{ .Description | default .Summary | truncate 155 }}">
+    <meta name="keywords" content="{{ delimit .Params.tags ", " }}">
+    <meta name="author" content="{{ .Params.author | default .Site.Data.personal.name.display }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:description" content="{{ .Description | default .Summary | truncate 155 }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    {{ with .Params.featured_image }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    {{ end }}
+    <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+    <meta property="article:author" content="{{ .Params.author | default .Site.Data.personal.name.display }}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:description" content="{{ .Description | default .Summary | truncate 155 }}">
+    {{ with .Params.featured_image }}
+    <meta name="twitter:image" content="{{ . | absURL }}">
+    {{ end }}
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ .Title }}",
+        "description": "{{ .Description | default .Summary }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ .Params.author | default .Site.Data.personal.name.display }}"
+        },
+        "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+        "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+        {{ with .Params.featured_image }}
+        "image": "{{ . | absURL }}",
+        {{ end }}
+        "url": "{{ .Permalink }}"
+    }
+    </script>
+</head>
+
+<body>
+    {{ partial "header.html" . }}
+
+    <article class="blog-post">
+        <!-- Post Header -->
+        <header class="blog-post-header section pt-5">
+            <div class="container">
+                {{ if .Site.Data.blog.display.post.show_breadcrumbs }}
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/blog/">Blog</a></li>
+                        {{ if .Params.categories }}
+                        <li class="breadcrumb-item"><a href="/blog/">{{ index .Params.categories 0 }}</a></li>
+                        {{ end }}
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ol>
+                </nav>
+                {{ end }}
+
+                <div class="row">
+                    <div class="col-12 col-lg-8 mx-auto text-center">
+                        <!-- Post Meta -->
+                        <div class="post-meta mb-3">
+                            {{ if .Params.categories }}
+                            <span class="post-category">
+                                {{ range first 1 .Params.categories }}
+                                <span class="category-badge" data-category="{{ . | urlize }}">{{ . }}</span>
+                                {{ end }}
+                            </span>
+                            {{ end }}
+                            
+                            <time datetime="{{ .Date.Format "2006-01-02" }}" class="post-date">
+                                {{ .Date.Format "January 2, 2006" }}
+                            </time>
+                            
+                            {{ if and .Site.Data.blog.blog.show_reading_time .Params.reading_time }}
+                            <span class="reading-time">
+                                <i class="icon-time"></i>
+                                {{ .Params.reading_time }} min read
+                            </span>
+                            {{ end }}
+                        </div>
+
+                        <!-- Post Title -->
+                        <h1 class="post-title">{{ .Title }}</h1>
+
+                        <!-- Post Description -->
+                        {{ with .Description }}
+                        <p class="post-description lead">{{ . }}</p>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Featured Image -->
+        {{ if .Params.featured_image }}
+        <div class="post-featured-image">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-10 mx-auto">
+                        <img
+                            class="img-responsive w-100"
+                            src="{{ .Params.featured_image | absURL }}"
+                            {{ if .Params.featured_image_2x }}
+                            srcset="{{ .Params.featured_image | absURL }} 1x, {{ .Params.featured_image_2x | absURL }} 2x"
+                            {{ end }}
+                            alt="{{ .Title }}"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+
+        <!-- Post Content -->
+        <div class="post-content section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8 mx-auto">
+                        <div class="post-body">
+                            {{ .Content }}
+                        </div>
+
+                        <!-- Post Tags -->
+                        {{ if and .Site.Data.blog.display.post.show_tags .Params.tags }}
+                        <div class="post-tags mt-5">
+                            <h6>Tags:</h6>
+                            <div class="tags-list">
+                                {{ range .Params.tags }}
+                                <span class="tag">#{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                        {{ end }}
+
+                        <!-- Social Sharing -->
+                        {{ if .Site.Data.blog.display.post.show_share_buttons }}
+                        <div class="post-sharing mt-5">
+                            <h6>Share this post:</h6>
+                            <div class="sharing-buttons">
+                                {{ range .Site.Data.blog.sharing.platforms }}
+                                {{ $url := $.Permalink }}
+                                {{ $title := $.Title }}
+                                {{ $shareUrl := .url | replaceRE "\\{url\\}" $url | replaceRE "\\{title\\}" $title }}
+                                <a href="{{ $shareUrl }}" target="_blank" class="share-btn" data-platform="{{ .name | lower }}">
+                                    <i class="{{ .icon }}"></i>
+                                    {{ .name }}
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Author Bio -->
+        {{ if .Site.Data.blog.display.post.show_author_bio }}
+        <div class="author-bio section pt-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8 mx-auto">
+                        <div class="author-card">
+                            <div class="author-info">
+                                {{ if .Site.Data.personal.images.profile.main }}
+                                <img src="{{ .Site.Data.personal.images.profile.main | absURL }}" alt="{{ .Site.Data.personal.name.display }}" class="author-avatar">
+                                {{ end }}
+                                <div class="author-details">
+                                    <h5>{{ .Params.author | default .Site.Data.personal.name.display }}</h5>
+                                    <p>{{ .Site.Data.personal.bio.short }}</p>
+                                    <div class="author-social">
+                                        {{ with .Site.Data.personal.social.twitter }}
+                                        <a href="{{ . }}" target="_blank"><i class="icon-twitter"></i></a>
+                                        {{ end }}
+                                        {{ with .Site.Data.personal.social.linkedin }}
+                                        <a href="{{ . }}" target="_blank"><i class="icon-linkedin"></i></a>
+                                        {{ end }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+
+        <!-- Post Navigation -->
+        {{ if .Site.Data.blog.display.post.show_navigation }}
+        <nav class="post-navigation section pt-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8 mx-auto">
+                        <div class="nav-links">
+                            {{ with .PrevInSection }}
+                            <div class="nav-previous">
+                                <a href="{{ .RelPermalink }}" class="nav-link">
+                                    <span class="nav-direction">← Previous Post</span>
+                                    <span class="nav-title">{{ .Title }}</span>
+                                </a>
+                            </div>
+                            {{ end }}
+                            
+                            {{ with .NextInSection }}
+                            <div class="nav-next">
+                                <a href="{{ .RelPermalink }}" class="nav-link">
+                                    <span class="nav-direction">Next Post →</span>
+                                    <span class="nav-title">{{ .Title }}</span>
+                                </a>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {{ end }}
+
+        <!-- Related Posts -->
+        {{ if .Site.Data.blog.display.post.show_related_posts }}
+        <section class="related-posts section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="text-center mb-5">Related Posts</h3>
+                        <div class="related-posts-grid">
+                            {{ $related := .Site.RegularPages.Related . | first 3 }}
+                            {{ range $related }}
+                            <article class="related-post-card">
+                                {{ if .Params.featured_image }}
+                                <div class="related-post__image">
+                                    <a href="{{ .RelPermalink }}">
+                                        <img src="{{ .Params.featured_image | absURL }}" alt="{{ .Title }}">
+                                    </a>
+                                </div>
+                                {{ end }}
+                                <div class="related-post__content">
+                                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                                    <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                                    <p>{{ .Summary | truncate 100 }}</p>
+                                </div>
+                            </article>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{ end }}
+    </article>
+
+    {{ partial "footer.html" . }}
+    {{ partial "base-foot.html" . }}
+    
+    <!-- Blog post scripts -->
+    <script>
+        // Reading progress indicator
+        window.addEventListener('scroll', function() {
+            const article = document.querySelector('.post-content');
+            const progress = document.querySelector('.reading-progress');
+            
+            if (article && progress) {
+                const articleTop = article.offsetTop;
+                const articleHeight = article.offsetHeight;
+                const scrolled = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                const progressPercent = Math.min(
+                    Math.max((scrolled - articleTop + windowHeight / 2) / articleHeight * 100, 0),
+                    100
+                );
+                
+                progress.style.width = progressPercent + '%';
+            }
+        });
+        
+        // Social sharing tracking
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const platform = this.getAttribute('data-platform');
+                
+                // Analytics tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'share', {
+                        'method': platform,
+                        'content_type': 'article',
+                        'content_id': '{{ .File.ContentBaseName }}'
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <!-- Reading progress bar -->
+    <div class="reading-progress-container">
+        <div class="reading-progress"></div>
+    </div>
+</body>
+
+</html>

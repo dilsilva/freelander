@@ -1,0 +1,266 @@
+# =====================================
+# FREELANDER - Easy Website Configuration
+# =====================================
+# This is your main configuration file. Simply edit the values below to customize your website.
+# No coding knowledge required! Just update the text, links, and image paths.
+
+# =====================================
+# 1. BASIC SITE SETTINGS
+# =====================================
+site:
+  title: "Freelander"
+  description: "A showcase of my creative work and professional experience"
+  url: "https://yourname.github.io"  # Your website URL
+  language: "en"
+  
+  # SEO Settings
+  keywords: "designer, portfolio, creative, freelancer"
+  author: "Your Name"
+
+# =====================================
+# 2. PERSONAL INFORMATION
+# =====================================
+personal:
+  # Your Details
+  name: "Diego Silva "
+  profession: "Software Engineer"
+  tagline: "Creating useful tools for everyone to use"
+  
+  # Contact Information  
+  email: "your.email@example.com"
+  phone: "+1 (555) 123-4567"  # Leave empty to hide: ""
+  location: "Amsterdam, NL"
+  
+  # About You
+  bio_short: "Brief one-line description about yourself and what you do."
+  bio_long: |
+    Write a longer description about yourself here. This will appear in the about section.
+    You can write multiple paragraphs to tell your story, share your experience, 
+    and explain what makes your work unique.
+    
+    **Use markdown formatting** like bold text, lists, and links to make it engaging.
+
+# =====================================  
+# 3. SOCIAL MEDIA & LINKS
+# =====================================
+social:
+  # Add your social media links (leave empty to hide: "")
+  linkedin: "https://linkedin.com/in/dilsilva"
+  instagram: "https://instagram.com/yourusername"
+  twitter: "https://twitter.com/yourusername" 
+  behance: "https://behance.net/yourprofile"  # For designers
+  dribbble: "https://dribbble.com/yourprofile"  # For designers
+  github: "https://github.com/disilva"    # For developers
+  website: ""  # Your personal blog/website
+  
+  # Professional Links
+  resume_pdf: "/files/your-resume.pdf"  # Link to your resume PDF
+  portfolio_url: ""  # External portfolio link if you have one
+
+# =====================================
+# 4. PORTFOLIO PROJECTS  
+# =====================================
+portfolio:
+  # Portfolio Settings
+  title: "Featured Work"
+  subtitle: "A selection of projects that showcase my creative process"
+  show_categories: true   # Show filter buttons
+  show_year_filter: true  # Show year filter
+  
+  # Your Projects (add as many as you want)
+  projects:
+    - name: "Project One"
+      category: "Web Design"
+      year: "2024"
+      client: "Client Name"
+      description: "Brief description of what this project accomplished and your role."
+      
+      # Project Images (put images in static/img/portfolio/project-one/)
+      featured_image: "img/portfolio/project-one/hero.jpg"
+      gallery_images:
+        - "img/portfolio/project-one/gallery-1.jpg"
+        - "img/portfolio/project-one/gallery-2.jpg" 
+        - "img/portfolio/project-one/gallery-3.jpg"
+      
+      # Project Links
+      live_url: "https://example.com"      # Live project (leave empty to hide: "")
+      case_study_url: ""                   # Case study link
+      code_url: ""                         # GitHub/code link
+      
+      # Project Details
+      tools: ["Figma", "Photoshop", "HTML/CSS"]
+      tags: ["Web Design", "UI/UX", "Responsive"]
+      featured: true  # Show in featured projects section
+      
+    - name: "Project Two"
+      category: "Mobile Design"
+      year: "2024"
+      client: "Another Client"
+      description: "Another project description highlighting key achievements."
+      featured_image: "img/portfolio/project-two/hero.jpg"
+      gallery_images:
+        - "img/portfolio/project-two/gallery-1.jpg"
+        - "img/portfolio/project-two/gallery-2.jpg"
+      live_url: "https://example-two.com"
+      tools: ["Sketch", "Principle", "Figma"]
+      tags: ["Mobile", "App Design", "UX"]
+      featured: true
+
+# =====================================
+# 5. EXPERIENCE & SKILLS
+# =====================================
+experience:
+  # Work Experience
+  jobs:
+    - title: "Senior Designer"
+      company: "Company Name"
+      duration: "2022 - Present"
+      description: "Brief description of your role and achievements."
+      
+    - title: "Designer"
+      company: "Previous Company"
+      duration: "2020 - 2022"
+      description: "Another role description."
+  
+  # Education
+  education:
+    - degree: "Bachelor of Design"
+      school: "University Name"
+      year: "2020"
+      
+    - degree: "Design Certificate"
+      school: "Design School"
+      year: "2019"
+  
+  # Skills/Tools
+  skills:
+    design: ["Figma", "Sketch", "Adobe Creative Suite", "Principle"]
+    development: ["HTML/CSS", "JavaScript", "WordPress"]  # For developers
+    other: ["User Research", "Prototyping", "Design Systems"]
+
+# =====================================
+# 6. CLIENT TESTIMONIALS
+# =====================================
+testimonials:
+  show_section: true  # Set to false to hide testimonials
+  
+  # Client Reviews
+  reviews:
+    - client_name: "John Smith"
+      client_title: "CEO, Company Name"
+      review: "Working with [Your Name] was fantastic. The design exceeded our expectations."
+      client_photo: "img/testimonials/client-1.jpg"
+      
+    - client_name: "Jane Doe"  
+      client_title: "Marketing Director, Another Company"
+      review: "Professional, creative, and delivered on time. Highly recommended!"
+      client_photo: "img/testimonials/client-2.jpg"
+
+# =====================================
+# 7. CONTACT & FORMS
+# =====================================  
+contact:
+  # Contact Form Settings
+  form_enabled: true
+  form_method: "GitHub"  # Options: "GitHub", "Formspree", "Netlify", "Custom"
+  
+  # Form Configuration (for GitHub Issues)
+  github:
+    repository: "yourusername/your-repo"  # Your GitHub repo for contact form
+    labels: ["contact", "website-form"]   # Labels for GitHub issues
+  
+  # Alternative form services
+  formspree:
+    form_id: ""  # Your Formspree form ID (if using Formspree)
+  
+  netlify:
+    form_name: "contact"  # Form name for Netlify Forms
+  
+  # Contact Information Display
+  show_phone: true
+  show_email: true  
+  show_location: true
+  
+  # Contact Page Content
+  title: "Get In Touch"
+  subtitle: "Have a project in mind? Let's discuss how we can work together."
+
+# =====================================
+# 8. THEME CUSTOMIZATION
+# =====================================
+theme:
+  # Color Scheme (choose one)
+  color_scheme: "default"  # Options: "default", "blue", "green", "purple", "orange"
+  
+  # Custom Colors (if you want specific colors)
+  colors:
+    primary: "#007bff"    # Main brand color
+    secondary: "#6c757d"  # Secondary color
+    accent: "#28a745"     # Accent color
+  
+  # Typography
+  fonts:
+    heading: "Inter"      # Font for headings
+    body: "Inter"         # Font for body text
+  
+  # Layout Options
+  layout:
+    header_style: "minimal"     # Options: "minimal", "full", "centered"
+    navigation_style: "fixed"   # Options: "fixed", "static", "hidden"
+    footer_style: "simple"      # Options: "simple", "detailed", "minimal"
+
+# =====================================
+# 9. FEATURES & INTEGRATIONS
+# =====================================
+features:
+  # Analytics
+  google_analytics: ""  # Your GA4 measurement ID (e.g., "G-XXXXXXXXXX")
+  
+  # Blog/News Section
+  blog_enabled: true
+  blog_title: "Latest Updates"
+  
+  # Newsletter Signup
+  newsletter_enabled: false
+  newsletter_service: ""  # Mailchimp, ConvertKit, etc.
+  
+  # Search Functionality
+  search_enabled: false
+  
+  # Comments (for blog)
+  comments_enabled: false
+  comments_system: ""  # Disqus, GitHub, etc.
+
+# =====================================
+# 10. SEO & PERFORMANCE
+# =====================================
+seo:
+  # Meta Tags
+  meta_description: "Professional portfolio showcasing creative design work and experience"
+  meta_keywords: "design, portfolio, creative, freelance, web design"
+  
+  # Open Graph (for social sharing)
+  og_image: "img/og-image.jpg"  # Social sharing image
+  og_description: "Check out my creative portfolio and latest work"
+  
+  # Performance
+  lazy_loading: true      # Enable lazy loading for images
+  image_optimization: true # Optimize images automatically
+  minify_css: true        # Minify CSS files
+  minify_js: true         # Minify JavaScript files
+
+# =====================================
+# 11. DEPLOYMENT SETTINGS
+# =====================================
+deployment:
+  # GitHub Pages
+  github_pages:
+    enabled: true
+    custom_domain: ""  # Your custom domain (e.g., "yourname.com")
+  
+  # Netlify
+  netlify:
+    site_name: ""      # Your Netlify site name
+  
+  # Build Settings
+  hugo_version: "0.131.0"  # Hugo version to use for building

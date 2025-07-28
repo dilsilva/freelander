@@ -1,0 +1,487 @@
+/* Custom Freelander Styles */
+
+/* Portfolio Styles */
+.portfolio-featured-image {
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.portfolio-featured-image:hover {
+  transform: scale(1.02);
+}
+
+.portfolio-content {
+  padding: 1rem 0;
+}
+
+.portfolio-tags {
+  margin: 1rem 0;
+}
+
+.portfolio-actions {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .portfolio-content {
+    margin-top: 2rem;
+  }
+}
+
+/* Experience Timeline Styles */
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-color, #007bff);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+}
+
+.timeline-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--primary-color, #007bff);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color, #007bff);
+}
+
+.timeline-meta {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.timeline-meta span {
+    margin-right: 1rem;
+}
+
+.education-item {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color, #28a745);
+}
+
+/* Additional timeline styling */
+.timeline-header h4 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.timeline-description {
+    color: #555;
+    line-height: 1.6;
+}
+
+.timeline-meta .company {
+    font-weight: 500;
+    color: #333;
+}
+
+.timeline-meta .duration {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Education styling */
+.education-item h5 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.education-item .text-muted {
+    font-size: 0.9em;
+}
+
+/* Icon styling fixes */
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'rad-icons' !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    vertical-align: -.125em;
+}
+
+/* Specific icon fixes */
+.timeline-icon i {
+    font-size: 1rem;
+}
+
+.btn i {
+    margin-right: 0.3rem;
+}
+
+/* Header and Navigation Fixes */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+.navbar-brand span:first-child {
+    color: var(--primary-color, #007bff);
+    margin-right: 0.2rem;
+}
+
+.navbar-brand span:last-child {
+    color: #333;
+}
+
+.navbar-brand:hover {
+    transform: translateY(-1px);
+    transition: transform 0.2s ease;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #555 !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary-color, #007bff) !important;
+    transform: translateY(-1px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--primary-color, #007bff);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+.navbar-toggler {
+    border: none !important;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+/* Body padding for fixed header */
+body {
+    padding-top: 80px;
+}
+
+/* Hero/Showcase Section Fixes */
+.rad-showcase {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+}
+
+.rad-showcase__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.rad-showcase__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rad-showcase .container {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.rad-showcase h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.rad-showcase h1 span {
+    color: #ffd700;
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+}
+
+.rad-showcase .lead {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.rad-showcase .btn {
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.rad-showcase .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Platform/Social Links */
+.platform-links {
+    margin-top: 3rem;
+}
+
+.platform-links a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    margin: 0 0.5rem;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.platform-links a:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+    color: #ffd700;
+    text-decoration: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .rad-showcase h1 {
+        font-size: 2.5rem;
+    }
+    
+    .rad-showcase h1 span {
+        font-size: 1.5rem;
+    }
+    
+    .rad-showcase .lead {
+        font-size: 1rem;
+    }
+    
+    .platform-links a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* About Section Fixes */
+.section {
+    padding: 5rem 0;
+}
+
+#about {
+    background: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+#about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(102, 126, 234, 0.05) 100%);
+    z-index: 1;
+}
+
+#about .container {
+    position: relative;
+    z-index: 2;
+}
+
+.about__profile-picture {
+    position: relative;
+}
+
+.about__profile-picture::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(135deg, var(--primary-color, #007bff), var(--accent-color, #28a745));
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.about__profile-picture img,
+.about__profile-picture .image-placeholder {
+    position: relative;
+    z-index: 2;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.about__profile-picture .image-placeholder {
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.about h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, var(--primary-color, #007bff), var(--accent-color, #28a745));
+    border-radius: 2px;
+}
+
+.about .lead {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.about-actions {
+    margin-top: 2.5rem;
+}
+
+.about-actions .btn {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.about-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Fix Bootstrap 4 compatibility - replace me-3 with mr-3 */
+.mr-3 {
+    margin-right: 1rem !important;
+}
+
+/* Mobile responsiveness for about section */
+@media (max-width: 768px) {
+    .about h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .about h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .about__profile-picture {
+        margin-top: 2rem;
+    }
+    
+    .about__profile-picture::before {
+        top: 10px;
+        left: 10px;
+        right: -10px;
+        bottom: -10px;
+    }
+}
+
+/* Override any conflicting styles */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}

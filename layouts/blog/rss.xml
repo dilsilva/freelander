@@ -1,0 +1,39 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" 
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ .Site.Data.blog.rss.title | default (printf "%s - Blog" .Site.Data.personal.name.display) }}</title>
+    <link>{{ .Site.BaseURL }}blog/</link>
+    <description>{{ .Site.Data.blog.rss.description | default .Site.Data.seo.seo.site_description }}</description>
+    <generator>Hugo {{ hugo.Version }}</generator>
+    <language>{{ .Site.Data.blog.rss.language | default .Site.Data.seo.seo.language }}</language>
+    <lastBuildDate>{{ .Site.Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+    <managingEditor>{{ .Site.Data.seo.seo.author.email }} ({{ .Site.Data.blog.rss.author | default .Site.Data.personal.name.display }})</managingEditor>
+    <webMaster>{{ .Site.Data.seo.seo.author.email }} ({{ .Site.Data.blog.rss.author | default .Site.Data.personal.name.display }})</webMaster>
+    <copyright>Copyright {{ now.Format "2006" }} {{ .Site.Data.personal.name.display }}</copyright>
+    
+    {{ range first 20 (where .Site.RegularPages "Section" "blog") }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <description><![CDATA[{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}]]></description>
+      <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
+      <author>{{ .Site.Data.seo.seo.author.email }} ({{ .Params.author | default .Site.Data.personal.name.display }})</author>
+      
+      {{ with .Params.categories }}
+      {{ range . }}
+      <category>{{ . }}</category>
+      {{ end }}
+      {{ end }}
+      
+      {{ if .Params.featured_image }}
+      <enclosure url="{{ .Params.featured_image | absURL }}" type="image/jpeg" />
+      {{ end }}
+    </item>
+    {{ end }}
+  </channel>
+</rss>

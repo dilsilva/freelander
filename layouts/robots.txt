@@ -1,0 +1,29 @@
+User-agent: *
+{{ if .Site.Data.seo.technical.robots.index }}
+Disallow:
+{{ else }}
+Disallow: /
+{{ end }}
+
+# Allow indexing of important pages
+Allow: /blog/
+Allow: /portfolio/
+Allow: /about/
+Allow: /contact/
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /drafts/
+
+# Crawl delay (optional, helps with server load)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: {{ .Site.BaseURL }}sitemap.xml
+
+# Additional sitemaps
+{{ if .Site.Data.blog.rss.enable }}
+Sitemap: {{ .Site.BaseURL }}blog/index.xml
+{{ end }}

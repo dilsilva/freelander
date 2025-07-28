@@ -1,0 +1,18 @@
+{{ $analytics := .Site.Data.analytics.analytics }}
+{{ $development := .Site.Data.analytics.development }}
+
+<!-- Skip analytics in development if configured -->
+{{ $skipDev := and hugo.IsProduction (not $development.disable_in_dev) }}
+{{ $skipDev = or $skipDev (not $development.disable_in_dev) }}
+
+{{ if and $analytics.enabled $skipDev }}
+
+<!-- Google Tag Manager (noscript) -->
+{{ if and $analytics.google_tag_manager.enabled $analytics.google_tag_manager.container_id }}
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id={{ $analytics.google_tag_manager.container_id }}"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+{{ end }}
+
+{{ end }} <!-- End analytics enabled check -->

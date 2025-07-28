@@ -1,0 +1,101 @@
+{{ $config := .Site.Data.config }}
+{{ $site := $config.site }}
+{{ $seo := $config.seo }}
+{{ $personal := $config.personal }}
+
+<!-- Basic Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- Title -->
+{{ if .IsHome }}
+<title>{{ $site.title | default $personal.name }}</title>
+{{ else }}
+<title>{{ .Title }} | {{ $site.title | default $personal.name }}</title>
+{{ end }}
+
+<!-- Meta Description -->
+{{ $description := "" }}
+{{ if .Description }}
+{{ $description = .Description }}
+{{ else if .IsHome }}
+{{ $description = $site.description }}
+{{ else if .Summary }}
+{{ $description = .Summary }}
+{{ else }}
+{{ $description = $site.description }}
+{{ end }}
+<meta name="description" content="{{ $description }}">
+
+<!-- Keywords -->
+{{ if $site.keywords }}
+<meta name="keywords" content="{{ $site.keywords }}">
+{{ end }}
+
+<!-- Author -->
+<meta name="author" content="{{ $site.author | default $personal.name }}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="{{ if .IsHome }}{{ $site.title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ $site.title }}">
+
+{{ if $seo.og_image }}
+<meta property="og:image" content="{{ $seo.og_image | absURL }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{{ end }}
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ $site.title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{ if $seo.og_image }}
+<meta name="twitter:image" content="{{ $seo.og_image | absURL }}">
+{{ end }}
+
+<!-- Additional Meta Tags -->
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow">
+
+<!-- Language -->
+<meta name="language" content="{{ $site.language | default "en" }}">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ $personal.name }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ $personal.bio_short }}",
+  "jobTitle": "{{ $personal.profession }}",
+  "email": "{{ $personal.email }}"
+  {{ if $personal.location }}
+  ,"address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{ $personal.location }}"
+  }
+  {{ end }}
+  {{ $social := $config.social }}
+  {{ $links := slice }}
+  {{ if $social.linkedin }}{{ $links = $links | append $social.linkedin }}{{ end }}
+  {{ if $social.github }}{{ $links = $links | append $social.github }}{{ end }}
+  {{ if $social.twitter }}{{ $links = $links | append $social.twitter }}{{ end }}
+  {{ if $social.instagram }}{{ $links = $links | append $social.instagram }}{{ end }}
+  {{ if $links }}
+  ,"sameAs": [
+    {{ range $index, $link := $links }}
+    {{ if $index }},{{ end }}
+    "{{ $link }}"
+    {{ end }}
+  ]
+  {{ end }}
+}
+</script>

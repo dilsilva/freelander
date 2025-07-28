@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Figma on Portfolio Site</title><link>http://localhost:1313/tags/figma/</link><description>Recent content in Figma on Portfolio Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 10:00:00 -0700</lastBuildDate><atom:link href="http://localhost:1313/tags/figma/feed.xml" rel="self" type="application/rss+xml"/><item><title>Building a Design System from Scratch: A Complete Case Study</title><link>http://localhost:1313/blog/design-system-case-study/</link><pubDate>Mon, 15 Jan 2024 10:00:00 -0700</pubDate><guid>http://localhost:1313/blog/design-system-case-study/</guid><description>&lt;p>When DataFlow Pro approached me to create their first design system, they were facing a common problem: inconsistent UI across their product suite, slow development cycles, and a frustrated design team working with dozens of one-off components.&lt;/p>
+&lt;p>Six months later, we had built a comprehensive design system that reduced development time by 40% and established visual consistency across 12 product areas.&lt;/p>
+&lt;p>Here&amp;rsquo;s how we did it.&lt;/p>
+&lt;h2 id="the-challenge">The Challenge&lt;/h2>
+&lt;p>DataFlow Pro had grown rapidly from startup to scale-up, but their design infrastructure hadn&amp;rsquo;t kept pace. The symptoms were familiar:&lt;/p></description></item><item><title>My Figma Workflow: How I Design 40% Faster</title><link>http://localhost:1313/blog/figma-workflow-optimization/</link><pubDate>Tue, 02 Jan 2024 09:15:00 -0700</pubDate><guid>http://localhost:1313/blog/figma-workflow-optimization/</guid><description>&lt;p>Last year, I tracked my design time and discovered I was spending 3 hours daily on repetitive Figma tasks. That&amp;rsquo;s 15 hours per week that could be spent on actual design thinking.&lt;/p>
+&lt;p>So I optimized my workflow. Here&amp;rsquo;s what I learned and the exact system I use now.&lt;/p>
+&lt;h2 id="the-time-audit-results">The Time Audit Results&lt;/h2>
+&lt;p>Before optimizing, I spent time on:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>25%&lt;/strong>: Looking for components and assets&lt;/li>
+&lt;li>&lt;strong>20%&lt;/strong>: Manually organizing layers&lt;/li>
+&lt;li>&lt;strong>15%&lt;/strong>: Recreating common layouts&lt;/li>
+&lt;li>&lt;strong>15%&lt;/strong>: Adjusting typography and spacing&lt;/li>
+&lt;li>&lt;strong>25%&lt;/strong>: Actual creative design work&lt;/li>
+&lt;/ul>
+&lt;p>This was backwards. I was spending 75% of my time on mechanical tasks.&lt;/p></description></item></channel></rss>

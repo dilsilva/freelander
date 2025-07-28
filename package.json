@@ -1,0 +1,45 @@
+{
+  "name": "freelander-portfolio",
+  "version": "1.0.0",
+  "description": "A production-ready Hugo portfolio template for creative professionals",
+  "scripts": {
+    "dev": "hugo server -D --bind=0.0.0.0 --disableFastRender",
+    "build": "hugo --gc --minify",
+    "preview": "hugo server --environment production --disableFastRender",
+    "clean": "rm -rf public resources",
+    "lint:html": "htmlhint public/**/*.html",
+    "lint:css": "stylelint assets/css/**/*.css",
+    "test": "npm run build && npm run lint:html",
+    "lighthouse": "lhci autorun",
+    "serve": "hugo server",
+    "vercel-build": "hugo --gc --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/freelander-portfolio.git"
+  },
+  "keywords": [
+    "hugo",
+    "portfolio",
+    "freelancer",
+    "creative",
+    "static-site",
+    "jamstack"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@lhci/cli": "^0.12.0",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^15.10.0",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
+}

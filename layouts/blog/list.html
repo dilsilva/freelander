@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{ partial "head.html" . }}
+    {{ partial "head_custom.html" . }}
+    
+    <!-- Blog-specific meta -->
+    <meta name="description" content="{{ .Site.Data.blog.blog.subtitle | default "Latest blog posts and insights" }}">
+</head>
+
+<body>
+    {{ partial "header.html" . }}
+
+    <!-- Blog Archive Header -->
+    <section class="blog-header section pt-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1>{{ .Site.Data.blog.blog.title | default "Blog" }}</h1>
+                <p class="lead">{{ .Site.Data.blog.blog.subtitle }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="blog-archive section pt-0">
+        <div class="container">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="{{ if .Site.Data.blog.display.archive.sidebar }}col-12 col-lg-8{{ else }}col-12{{ end }}">
+                    
+                    <!-- Category Filters -->
+                    {{ if and .Site.Data.blog.blog.show_categories .Site.Data.blog.categories }}
+                    <div class="blog-filters mb-4">
+                        <div class="filter-buttons">
+                            <button class="btn btn-outline-primary active" data-filter="all">All Posts</button>
+                            {{ range .Site.Data.blog.categories }}
+                            <button class="btn btn-outline-primary" data-filter="{{ .slug }}">{{ .name }}</button>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    <!-- Blog Posts Grid -->
+                    <div class="blog-posts {{ if eq .Site.Data.blog.display.archive.layout "grid" }}blog-grid{{ else if eq .Site.Data.blog.display.archive.layout "masonry" }}blog-masonry{{ else }}blog-list{{ end }}">
+                        
+                        {{ $paginator := .Paginate (where .Site.RegularPages "Section" "blog") (.Site.Data.blog.display.archive.posts_per_page | default 9) }}
+                        
+                        {{ range $paginator.Pages }}
+                        <article class="blog-post-item" data-categories="{{ delimit .Params.categories " " | lower | replaceRE " " "-" }}">
+                            
+                            {{ if .Params.featured_image }}
+                            <div class="blog-post__image">
+                                <a href="{{ .RelPermalink }}">
+                                    <img
+                                        class="lozad img-responsive"
+                                        src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+                                        data-src="{{ .Params.featured_image | absURL }}"
+                                        {{ if .Params.featured_image_2x }}
+                                        data-srcset="{{ .Params.featured_image | absURL }} 1x, {{ .Params.featured_image_2x | absURL }} 2x"
+                                        {{ end }}
+                                        alt="{{ .Title }}"
+                                    />
+                                </a>
+                                
+                                {{ if .Params.categories }}
+                                <div class="blog-post__category">
+                                    {{ range first 1 .Params.categories }}
+                                    <span class="category-badge" data-category="{{ . | urlize }}">{{ . }}</span>
+                                    {{ end }}
+                                </div>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+
+                            <div class="blog-post__content">
+                                <div class="blog-post__meta">
+                                    <time datetime="{{ .Date.Format "2006-01-02" }}">
+                                        {{ .Date.Format "January 2, 2006" }}
+                                    </time>
+                                    
+                                    {{ if and $.Site.Data.blog.blog.show_reading_time .Params.reading_time }}
+                                    <span class="reading-time">
+                                        <i class="icon-time"></i>
+                                        {{ .Params.reading_time }} min read
+                                    </span>
+                                    {{ end }}
+                                    
+                                    {{ if .Params.author }}
+                                    <span class="author">
+                                        <i class="icon-user"></i>
+                                        {{ .Params.author }}
+                                    </span>
+                                    {{ end }}
+                                </div>
+
+                                <h2 class="blog-post__title">
+                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                </h2>
+
+                                <div class="blog-post__excerpt">
+                                    {{ if .Description }}
+                                        {{ .Description }}
+                                    {{ else }}
+                                        {{ .Summary }}
+                                    {{ end }}
+                                </div>
+
+                                {{ if and $.Site.Data.blog.blog.show_tags .Params.tags }}
+                                <div class="blog-post__tags">
+                                    {{ range .Params.tags }}
+                                    <span class="tag">#{{ . }}</span>
+                                    {{ end }}
+                                </div>
+                                {{ end }}
+
+                                <div class="blog-post__actions">
+                                    <a href="{{ .RelPermalink }}" class="btn btn-primary">
+                                        Read More <i class="icon-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                        {{ end }}
+                    </div>
+
+                    <!-- Pagination -->
+                    {{ if .Site.Data.blog.display.archive.pagination }}
+                    {{ if gt $paginator.TotalPages 1 }}
+                    <nav class="blog-pagination" aria-label="Blog pagination">
+                        <ul class="pagination justify-content-center">
+                            {{ if $paginator.HasPrev }}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $paginator.Prev.URL }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {{ end }}
+
+                            {{ range $paginator.Pagers }}
+                            <li class="page-item {{ if eq . $paginator }}active{{ end }}">
+                                <a class="page-link" href="{{ .URL }}">{{ .PageNumber }}</a>
+                            </li>
+                            {{ end }}
+
+                            {{ if $paginator.HasNext }}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $paginator.Next.URL }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </nav>
+                    {{ end }}
+                    {{ end }}
+                </div>
+
+                <!-- Sidebar -->
+                {{ if .Site.Data.blog.display.archive.sidebar }}
+                <aside class="col-12 col-lg-4 mt-5 mt-lg-0">
+                    <div class="blog-sidebar">
+                        
+                        <!-- Recent Posts -->
+                        {{ if .Site.Data.blog.display.sidebar.show_recent_posts }}
+                        <div class="sidebar-widget">
+                            <h4>Recent Posts</h4>
+                            <ul class="recent-posts-list">
+                                {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+                                <li>
+                                    <a href="{{ .RelPermalink }}">
+                                        <h6>{{ .Title }}</h6>
+                                        <time>{{ .Date.Format "Jan 2, 2006" }}</time>
+                                    </a>
+                                </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        {{ end }}
+
+                        <!-- Categories -->
+                        {{ if and .Site.Data.blog.display.sidebar.show_categories .Site.Data.blog.categories }}
+                        <div class="sidebar-widget">
+                            <h4>Categories</h4>
+                            <ul class="category-list">
+                                {{ range .Site.Data.blog.categories }}
+                                <li>
+                                    <a href="#" data-filter="{{ .slug }}">
+                                        {{ .name }}
+                                        <span class="post-count">({{ len (where $.Site.RegularPages ".Params.categories" "intersect" (slice .name)) }})</span>
+                                    </a>
+                                </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        {{ end }}
+
+                        <!-- Newsletter Signup -->
+                        {{ if .Site.Data.blog.newsletter.enable }}
+                        <div class="sidebar-widget newsletter-widget">
+                            <h4>{{ .Site.Data.blog.newsletter.title }}</h4>
+                            <p>{{ .Site.Data.blog.newsletter.description }}</p>
+                            <form action="{{ .Site.Data.blog.newsletter.form_action }}" method="post" class="newsletter-form">
+                                <div class="mb-3">
+                                    <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                            </form>
+                        </div>
+                        {{ end }}
+                    </div>
+                </aside>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    {{ partial "footer.html" . }}
+    {{ partial "base-foot.html" . }}
+    
+    <!-- Blog filtering script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-buttons .btn');
+        const blogPosts = document.querySelectorAll('.blog-post-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter posts
+                blogPosts.forEach(post => {
+                    const categories = post.getAttribute('data-categories');
+                    
+                    if (filter === 'all' || (categories && categories.includes(filter))) {
+                        post.style.display = 'block';
+                        post.style.opacity = '1';
+                    } else {
+                        post.style.opacity = '0';
+                        setTimeout(() => {
+                            post.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

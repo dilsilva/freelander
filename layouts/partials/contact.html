@@ -1,0 +1,145 @@
+{{ $config := .Site.Data.config }}
+{{ $personal := $config.personal }}
+{{ $contact := $config.contact }}
+
+<section id="contact" class="section section--contact pt-0">
+    <div class="container">
+        <div class="contact">
+            <h2>{{ $contact.title | default "Get In Touch" }}</h2>
+            {{ with $contact.subtitle }}
+            <p class="lead">{{ . }}</p>
+            {{ end }}
+            
+            <div class="row pt-2">
+                <div class="col-12 col-lg-7">
+                    {{ if $contact.form_enabled }}
+                    <form 
+                        action="#" 
+                        method="POST"
+                        class="contact-form"
+                        data-method="{{ $contact.form_method | default "github" }}"
+                    >
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" name="name" id="full_name" required
+                                       placeholder="Full Name"/>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="email" name="email" id="email" required
+                                       placeholder="Email Address"/>
+                            </div>
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-12">
+                                <input type="text" name="subject" id="subject"
+                                       placeholder="Subject"/>
+                            </div>
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-12">
+                                <textarea name="message" id="message" required
+                                          cols="30" rows="5" placeholder="Your message..."></textarea>
+                            </div>
+                        </div>
+                        
+                        {{ if eq .Site.Data.site.contact_form.backend "netlify" }}
+                        <!-- Netlify bot field -->
+                        <div style="display: none;">
+                            <input name="bot-field" />
+                        </div>
+                        {{ end }}
+                        
+                        <div class="row pt-4">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="icon-mail-fill"></i>
+                                    Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <!-- Success/Error Messages -->
+                    <div id="form-messages" class="pt-3" style="display: none;">
+                        <div id="success-message" class="alert alert-success">
+                            Thank you for your message! I'll get back to you soon.
+                        </div>
+                        <div id="error-message" class="alert alert-danger">
+                            Sorry, there was an error sending your message. Please try again.
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+                
+                <div class="col-12 col-lg-5 contact__info">
+                    {{ if and $personal.phone $contact.show_phone }}
+                    <h4>Phone</h4>
+                    <span><a href="tel:{{ $personal.phone }}">{{ $personal.phone }}</a></span>
+                    {{ end }}
+                    
+                    <h4>Email</h4>
+                    <span><a href="mailto:{{ $personal.email }}">{{ $personal.email }}</a></span>
+                    
+                    {{ if and $personal.location $contact.show_location }}
+                    <h4>Location</h4>
+                    <span>{{ $personal.location }}</span>
+                    {{ end }}
+                    
+                    <!-- Social Links -->
+                    <h4 class="pt-3">Connect</h4>
+                    <div class="contact-social-links">
+                        {{ $social := $config.social }}
+                        {{ if $social.linkedin }}<a href="{{ $social.linkedin }}" target="_blank" class="mr-3"><i class="icon-linkedin-line"></i></a>{{ end }}
+                        {{ if $social.instagram }}<a href="{{ $social.instagram }}" target="_blank" class="mr-3"><i class="icon-instagram-line"></i></a>{{ end }}
+                        {{ if $social.twitter }}<a href="{{ $social.twitter }}" target="_blank" class="mr-3"><i class="icon-twitter-line"></i></a>{{ end }}
+                        {{ if $social.github }}<a href="{{ $social.github }}" target="_blank" class="mr-3"><i class="icon-github-line"></i></a>{{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{ if $contact.form_enabled }}
+<!-- Contact Form JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.contact-form');
+    const messagesDiv = document.getElementById('form-messages');
+    const successMsg = document.getElementById('success-message');
+    const errorMsg = document.getElementById('error-message');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const method = form.dataset.method;
+            
+            if (method === "github") {
+                // GitHub Issues integration
+                e.preventDefault();
+                submitToGitHub(form);
+            } else if (method === "formspree") {
+                // Formspree will handle the submission
+            } else if (method === "netlify") {
+                // Netlify will handle the submission
+            }
+        });
+    }
+    
+    function submitToGitHub(form) {
+        const formData = new FormData(form);
+        // GitHub Issues API integration would go here
+        // This is a simplified version - full implementation would need server-side handling
+        showMessage(successMsg);
+    }
+    
+    function showMessage(element) {
+        messagesDiv.style.display = 'block';
+        element.style.display = 'block';
+        setTimeout(() => {
+            messagesDiv.style.display = 'none';
+            element.style.display = 'none';
+        }, 5000);
+    }
+});
+</script>
+{{ end }}

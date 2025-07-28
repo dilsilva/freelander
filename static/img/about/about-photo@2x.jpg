@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#007bff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#28a745;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  
+  <!-- About photo illustration -->
+  <circle cx="600" cy="600" r="200" fill="rgba(255,255,255,0.3)"/>
+  <rect x="400" y="840" width="400" height="160" rx="20" fill="rgba(255,255,255,0.3)"/>
+  
+  <!-- Text -->
+  <text x="600" y="1300" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="56" font-weight="bold">About Photo</text>
+  <text x="600" y="1380" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="32">Professional Portrait</text>
+  <text x="600" y="1440" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="Arial, sans-serif" font-size="28">1200x1600 Placeholder (2x)</text>
+</svg>

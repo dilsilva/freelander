@@ -1,0 +1,62 @@
+{{ $config := .Site.Data.config }}
+{{ $personal := $config.personal }}
+{{ $social := $config.social }}
+
+<section class="rad-showcase rad-showcase--index rad-animation-group rad-fade-down">
+  <div class="rad-showcase__bg">
+    <img
+      class="lozad img-responsive"
+      src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+      data-src="{{ "img/profile/profile.jpg" | absURL }}"
+      data-srcset="{{ "img/profile/profile.jpg" | absURL }} 1x, {{ "img/profile/profile@2x.jpg" | absURL }} 2x"
+      alt="{{ $personal.name }} - {{ $personal.profession }}"
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6">
+        <h1 class="display-1">
+          Hello, I'm {{ $personal.name }}.
+          <br />
+          <span>{{ $personal.profession }}</span>
+        </h1>
+        <p class="lead">
+          {{ $personal.tagline }}
+        </p>
+        <p class="lead">
+          {{ $personal.bio_short }}
+        </p>
+        <a
+          href="#contact"
+          class="btn btn-primary"
+        >
+          <i class="icon-mail-fill"></i>
+          Get In Touch
+        </a>
+      </div>
+    </div>
+    
+    <div class="row platform-links">
+      <div class="col-12">
+        {{ if $social.linkedin }}<a href="{{ $social.linkedin }}" target="_blank"><i class="icon-linkedin-line"></i></a>{{ end }}
+        {{ if $social.instagram }}<a href="{{ $social.instagram }}" target="_blank"><i class="icon-instagram-line"></i></a>{{ end }}
+        {{ if $social.twitter }}<a href="{{ $social.twitter }}" target="_blank"><i class="icon-twitter-line"></i></a>{{ end }}
+        {{ if $social.github }}<a href="{{ $social.github }}" target="_blank"><i class="icon-github-line"></i></a>{{ end }}
+        {{ if $social.behance }}<a href="{{ $social.behance }}" target="_blank"><i class="icon-behance-line"></i></a>{{ end }}
+        {{ if $social.dribbble }}<a href="{{ $social.dribbble }}" target="_blank"><i class="icon-dribbble-line"></i></a>{{ end }}
+        {{ if $social.youtube }}<a href="{{ $social.youtube }}" target="_blank"><i class="icon-youtube-line"></i></a>{{ end }}
+        {{ if $social.facebook }}<a href="{{ $social.facebook }}" target="_blank"><i class="icon-facebook-line"></i></a>{{ end }}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile background image fallback -->
+  <div class="rad-showcase__bg rad-showcase__bg--mobile">
+    <img
+      class="lozad img-responsive"
+      src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+      data-src="{{ "img/profile/profile.jpg" | absURL }}"
+      alt="{{ $personal.name }} - {{ $personal.profession }}"
+    />
+  </div>
+</section>

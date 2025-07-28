@@ -1,0 +1,250 @@
+{{ if and .Site.Data.site.settings.sections.blog .Site.Data.blog.blog.homepage_section.show_section }}
+<section id="blog" class="section">
+    <div class="container">
+        <!-- Blog Header -->
+        <div class="text-center mb-5 rad-animation-group rad-fade-down">
+            <h2>{{ .Site.Data.blog.blog.homepage_section.title | default "Recent Posts" }}</h2>
+            {{ with .Site.Data.blog.blog.homepage_section.subtitle }}
+            <p class="lead">{{ . }}</p>
+            {{ end }}
+        </div>
+
+        <!-- Featured Posts Grid -->
+        <div class="blog-grid">
+            {{ $maxPosts := .Site.Data.blog.blog.homepage_section.max_posts | default 3 }}
+            {{ $showExcerpt := .Site.Data.blog.blog.homepage_section.show_excerpt }}
+            {{ $excerptLength := .Site.Data.blog.blog.homepage_section.excerpt_length | default 150 }}
+            
+            {{ range first $maxPosts (where .Site.RegularPages "Section" "blog") }}
+            <article class="blog-card rad-animation-group rad-fade-down">
+                {{ if .Params.featured_image }}
+                <div class="blog-card__image">
+                    <a href="{{ .RelPermalink }}">
+                        <img
+                            class="lozad img-responsive"
+                            src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+                            data-src="{{ .Params.featured_image | absURL }}"
+                            {{ if .Params.featured_image_2x }}
+                            data-srcset="{{ .Params.featured_image | absURL }} 1x, {{ .Params.featured_image_2x | absURL }} 2x"
+                            {{ end }}
+                            alt="{{ .Title }}"
+                        />
+                    </a>
+                    
+                    {{ if and $.Site.Data.blog.display.homepage.show_category .Params.categories }}
+                    <div class="blog-card__category">
+                        {{ range first 1 .Params.categories }}
+                        <span class="category-badge" data-category="{{ . | urlize }}">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+
+                <div class="blog-card__content">
+                    <div class="blog-card__meta">
+                        {{ if $.Site.Data.blog.display.homepage.show_date }}
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">
+                            {{ .Date.Format "Jan 2, 2006" }}
+                        </time>
+                        {{ end }}
+                        
+                        {{ if and $.Site.Data.blog.blog.show_reading_time .Params.reading_time }}
+                        <span class="reading-time">
+                            <i class="icon-time"></i>
+                            {{ .Params.reading_time }} min read
+                        </span>
+                        {{ end }}
+                    </div>
+
+                    <h3 class="blog-card__title">
+                        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </h3>
+
+                    {{ if $showExcerpt }}
+                    <div class="blog-card__excerpt">
+                        {{ if .Description }}
+                            {{ .Description | truncate $excerptLength }}
+                        {{ else }}
+                            {{ .Summary | truncate $excerptLength }}
+                        {{ end }}
+                    </div>
+                    {{ end }}
+
+                    {{ if $.Site.Data.blog.display.homepage.show_read_more }}
+                    <div class="blog-card__actions">
+                        <a href="{{ .RelPermalink }}" class="btn btn-outline-primary">
+                            Read More <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                    {{ end }}
+                </div>
+            </article>
+            {{ end }}
+        </div>
+
+        <!-- View All Posts Button -->
+        <div class="text-center mt-5 rad-animation-group rad-fade-down">
+            <a href="/blog/" class="btn btn-primary">
+                View All Posts <i class="icon-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Styles -->
+<style>
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.blog-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.blog-card__image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+.blog-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.blog-card__image:hover img {
+    transform: scale(1.05);
+}
+
+.blog-card__category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.category-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.blog-card__content {
+    padding: 2rem;
+}
+
+.blog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.reading-time {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.blog-card__title {
+    margin-bottom: 1rem;
+}
+
+.blog-card__title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-card__title a:hover {
+    color: var(--primary-color);
+}
+
+.blog-card__excerpt {
+    color: var(--secondary-color);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.blog-card__actions {
+    text-align: left;
+}
+
+/* Category Color Variations */
+.category-badge[data-category="design-process"] {
+    background: #007bff;
+}
+
+.category-badge[data-category="industry-insights"] {
+    background: #28a745;
+}
+
+.category-badge[data-category="tutorial"] {
+    background: #17a2b8;
+}
+
+.category-badge[data-category="case-study"] {
+    background: #ffc107;
+    color: #333;
+}
+
+.category-badge[data-category="news"] {
+    background: #6c757d;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .blog-card__content {
+        padding: 1.5rem;
+    }
+    
+    .blog-card__meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-grid {
+        gap: 1rem;
+    }
+    
+    .blog-card__content {
+        padding: 1rem;
+    }
+    
+    .category-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+</style>
+
+{{ end }}
